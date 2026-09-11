@@ -1,0 +1,73 @@
+:root {
+  --primary: #1a6fb5;
+  --overtemp: #d64545;
+  --normal: #2e9e5b;
+  --bg: #f4f6f8;
+  --border: #dde3e8;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+  background: var(--bg);
+  color: #2b3440;
+}
+
+header {
+  background: var(--primary);
+  color: #fff;
+  padding: 20px 32px;
+}
+header h1 { margin: 0; font-size: 22px; }
+.subtitle { margin: 6px 0 0; font-size: 13px; opacity: 0.85; }
+
+main { max-width: 1080px; margin: 24px auto; padding: 0 16px; }
+
+.card {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 16px 20px;
+  margin-bottom: 20px;
+}
+.card h2 { margin: 0 0 12px; font-size: 16px; }
+
+/* 筛选表单 */
+#filter-form { display: flex; flex-wrap: wrap; gap: 12px; align-items: flex-end; }
+#filter-form label { display: flex; flex-direction: column; font-size: 13px; gap: 4px; color: #55606c; }
+#filter-form select, #filter-form input {
+  padding: 7px 10px; border: 1px solid var(--border); border-radius: 6px; font-size: 14px; min-width: 170px;
+}
+button {
+  padding: 8px 18px; border: none; border-radius: 6px; font-size: 14px; cursor: pointer;
+  background: var(--primary); color: #fff;
+}
+button#reset-btn { background: #e8edf1; color: #2b3440; }
+button:hover { opacity: 0.88; }
+
+/* 统计 */
+.stats { display: flex; gap: 32px; flex-wrap: wrap; }
+.stat { display: flex; flex-direction: column; align-items: center; min-width: 90px; }
+.stat-value { font-size: 26px; font-weight: 600; }
+.stat-value.overtemp { color: var(--overtemp); }
+.stat-label { font-size: 12px; color: #7a8590; margin-top: 2px; }
+
+/* 图表 */
+#chart-container { overflow-x: auto; }
+.legend { font-size: 13px; color: #55606c; display: flex; align-items: center; gap: 8px; margin: 8px 0 0; }
+.dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
+.dot.normal { background: var(--normal); }
+.dot.overtemp { background: var(--overtemp); }
+.dash { width: 26px; border-top: 2px dashed var(--overtemp); display: inline-block; }
+
+/* 表格 */
+table { width: 100%; border-collapse: collapse; font-size: 14px; }
+th, td { padding: 8px 10px; text-align: left; border-bottom: 1px solid var(--border); }
+th { background: #f0f3f6; font-weight: 600; }
+tr.overtemp-row td { background: #fdf1f1; }
+.badge { padding: 2px 10px; border-radius: 10px; font-size: 12px; color: #fff; }
+.badge.overtemp { background: var(--overtemp); }
+.badge.normal { background: var(--normal); }
+.empty { text-align: center; color: #8a949e; }

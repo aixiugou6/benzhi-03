@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>实验室样本冷链记录系统</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>实验室样本冷链记录系统</h1>
+    <p class="subtitle">超温阈值：<span id="threshold-label">—</span> ℃（温度高于阈值即判定超温）</p>
+  </header>
+
+  <main>
+    <!-- 筛选区 -->
+    <section class="card">
+      <form id="filter-form">
+        <label>
+          样本编号
+          <select id="filter-sample">
+            <option value="">全部样本</option>
+          </select>
+        </label>
+        <label>
+          开始时间
+          <input type="datetime-local" id="filter-from">
+        </label>
+        <label>
+          结束时间
+          <input type="datetime-local" id="filter-to">
+        </label>
+        <button type="submit">查询</button>
+        <button type="button" id="reset-btn">重置</button>
+      </form>
+    </section>
+
+    <!-- 统计区 -->
+    <section class="card stats" id="stats" hidden>
+      <div class="stat"><span class="stat-value" id="stat-count">0</span><span class="stat-label">记录数</span></div>
+      <div class="stat"><span class="stat-value overtemp" id="stat-overtemp">0</span><span class="stat-label">超温次数</span></div>
+      <div class="stat"><span class="stat-value" id="stat-min">—</span><span class="stat-label">最低温 ℃</span></div>
+      <div class="stat"><span class="stat-value" id="stat-max">—</span><span class="stat-label">最高温 ℃</span></div>
+      <div class="stat"><span class="stat-value" id="stat-avg">—</span><span class="stat-label">平均温 ℃</span></div>
+    </section>
+
+    <!-- 温度轨迹 -->
+    <section class="card" id="trajectory-card" hidden>
+      <h2>温度轨迹（按采集时间还原）</h2>
+      <div id="chart-container"></div>
+      <p class="legend">
+        <span class="dot normal"></span> 正常
+        <span class="dot overtemp"></span> 超温
+        <span class="dash"></span> 超温阈值线
+      </p>
+    </section>
+
+    <!-- 明细表 -->
+    <section class="card">
+      <h2>温度记录</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>样本编号</th><th>设备编号</th><th>记录编号</th>
+            <th>采集时间 (UTC)</th><th>温度 (℃)</th><th>状态</th>
+          </tr>
+        </thead>
+        <tbody id="readings-body">
+          <tr><td colspan="6" class="empty">暂无数据</td></tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
